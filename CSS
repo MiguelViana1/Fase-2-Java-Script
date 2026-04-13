@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #080c16;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+#app-container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0b132b;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.app-header {
+    background-color: #0b132b;
+    padding: 15px 0;
+    border-bottom: 1px solid #38E09E;
+}
+
+.app-header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img-small {
+    height: 60px;
+    filter: drop-shadow(0 0 5px #38E09E80);
+}
+
+.logo-img-large {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+.nav-links a:hover { opacity: 1; color: #38E09E; }
+
+.page { display: none; padding: 40px 0; }
+.page.active { display: block; }
+.hidden { display: none !important; }
+
+.login-box {
+    max-width: 400px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 30px;
+    background: #121e3b;
+    border-radius: 12px;
+}
+
+.auth-toggle {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #d1d5db;
+}
+
+.auth-toggle a {
+    color: #38E09E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h2 { color: #38E09E; margin-bottom: 25px; text-align: center; font-size: 28px; }
+
+form { display: flex; flex-direction: column; gap: 15px; }
+
+label { font-size: 13px; color: #38E09E; margin-bottom: -5px; margin-left: 5px; }
+
+input, select {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #1e2a47;
+    background-color: #0b132b;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #38E09E;
+    color: #0b132b;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary:hover { background-color: #2bc285; }
+
+.form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #121e3b;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.ativos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.ativo-card {
+    background: #121e3b;
+    border-left: 6px solid #38E09E;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.ativo-card h3 { color: #38E09E; margin-bottom: 10px; }
+.ativo-card p { font-size: 14px; margin-bottom: 5px; color: #d1d5db; }
+.ativo-card .info-label { color: #38E09E; font-weight: bold; }
+
+.planos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.plan-card {
+    background: #121e3b;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.price { font-size: 28px; font-weight: bold; margin: 15px 0; color: #38E09E; }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #0b132b;
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid #38E09E;
+    text-align: center;
+}
+
+.hero { text-align: center; padding: 60px 0; }
+
+@media (max-width: 767px) {
+    .app-header .container { flex-direction: column; gap: 10px; }
+}
