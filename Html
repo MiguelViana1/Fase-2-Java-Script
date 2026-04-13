@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulData - Herança Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="app-container">
+        
+        <section id="page-login" class="page active">
+            <div class="login-box">
+                <img src="imglogo2" alt="SoulData Logo" class="logo-img-large">
+                <h2>Login</h2>
+                <form id="form-login">
+                    <input type="email" placeholder="E-mail" required>
+                    <input type="password" placeholder="Senha" required>
+                    <button type="submit" class="btn-primary">Entrar no App</button>
+                </form>
+                <p class="auth-toggle">Não tem uma conta? <a href="#" id="link-ir-registro">Cadastrar-se</a></p>
+            </div>
+        </section>
+
+        <section id="page-registro" class="page">
+            <div class="login-box">
+                <img src="imglogo.jpeg" alt="SoulData Logo" class="logo-img-large">
+                <h2>Criar Conta</h2>
+                <form id="form-registro">
+                    <input type="text" placeholder="Nome Completo" required>
+                    <input type="email" placeholder="E-mail" required>
+                    <input type="password" placeholder="Senha" required>
+                    <button type="submit" class="btn-primary">Criar Cadastro</button>
+                </form>
+                <p class="auth-toggle">Já tem conta? <a href="#" id="link-voltar-login">Fazer Login</a></p>
+            </div>
+        </section>
+
+        <header class="app-header hidden" id="main-header">
+            <div class="container">
+                <img src="imglogo2" alt="SoulData Logo" class="logo-img-small">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#" id="link-home">Início</a></li>
+                        <li><a href="#" id="link-cadastro">Cadastrar</a></li>
+                        <li><a href="#" id="link-cofre">Cofre</a></li>
+                        <li><a href="#" id="link-planos">Planos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main class="hidden" id="main-content">
+            <div class="container">
+                <section id="page-home" class="page">
+                    <div class="hero">
+                        <h2>Digital Legacy Secured</h2>
+                        <p>Sua herança digital protegida e organizada para o futuro.</p>
+                        <button id="btn-start" class="btn-primary">Proteger Novo Ativo</button>
+                    </div>
+                </section>
+
+                <section id="page-cadastro" class="page">
+                    <div class="form-wrapper">
+                        <h2>Cadastrar Ativo</h2>
+                        <form id="form-ativo">
+                            <label>Titular</label>
+                            <input type="text" id="titular" placeholder="Nome Completo" required>
+
+                            <label>Tipo de Ativo</label>
+                            <select id="tipoAtivo" required>
+                                <option value="">Selecione</option>
+                                <option value="crypto">Criptomoeda</option>
+                                <option value="redesocial">Rede Social</option>
+                                <option value="banco">Banco Digital</option>
+                                <option value="documentos">Cofre de Documentos</option>
+                            </select>
+
+                            <label>Login, Link ou Identificação</label>
+                            <input type="text" id="identificacao" placeholder="Usuario" required>
+
+                            <div id="container-senha" class="hidden">
+                                <label id="label-senha">Senha do Ativo</label>
+                                <input type="text" id="senhaAtivo">
+                            </div>
+
+                            <label>E-mail do Herdeiro</label>
+                            <input type="email" id="emailHerdeiro" required>
+
+                            <label>Tempo de Inatividade</label>
+                            <select id="tempoInatividade" required>
+                                <option value="Selecione">Selecione</option>
+                                <option value="3 Meses">3 Meses</option>
+                                <option value="6 Meses">6 Meses</option>
+                                <option value="1 Ano">1 Ano</option>
+                            </select>
+
+                            <button type="submit" class="btn-primary">Guardar no Cofre</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section id="page-cofre" class="page">
+                    <h2>Meu Cofre</h2>
+                    <div id="lista-ativos" class="ativos-grid"></div>
+                </section>
+
+                <section id="page-planos" class="page">
+                    <h2>Planos</h2>
+                    <div class="planos-grid">
+                        <div class="plan-card">
+                            <h3>Free</h3>
+                            <p class="price">R$ 0,00</p>
+                            <button class="btn-primary">Atual</button>
+                        </div>
+                        <div class="plan-card premium">
+                            <h3>Premium</h3>
+                            <p class="price">R$ 99,90</p>
+                            <button class="btn-primary">Assinar</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div id="modalSucesso" class="modal">
+            <div class="modal-content">
+                <h2>Cofre Salvo</h2>
+                <p>O ativo foi criptografado e salvo.</p>
+                <button id="btnFecharModal" class="btn-primary">Fechar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
