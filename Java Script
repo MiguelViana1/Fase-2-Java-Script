@@ -1,0 +1,107 @@
+const pageLogin = document.getElementById('page-login');
+const pageRegistro = document.getElementById('page-registro');
+const pageHome = document.getElementById('page-home');
+const pageCadastro = document.getElementById('page-cadastro');
+const pageCofre = document.getElementById('page-cofre');
+const pagePlanos = document.getElementById('page-planos');
+const mainHeader = document.getElementById('main-header');
+const mainContent = document.getElementById('main-content');
+
+let cofreDeAtivos = [];
+
+function navegar(pagina) {
+    [pageLogin, pageRegistro, pageHome, pageCadastro, pageCofre, pagePlanos].forEach(p => p.classList.remove('active'));
+    pagina.classList.add('active');
+    window.scrollTo(0,0);
+}
+
+document.getElementById('link-ir-registro').addEventListener('click', (e) => {
+    e.preventDefault();
+    navegar(pageRegistro);
+});
+
+document.getElementById('link-voltar-login').addEventListener('click', (e) => {
+    e.preventDefault();
+    navegar(pageLogin);
+});
+
+document.getElementById('form-registro').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Conta criada com sucesso! Agora faça login.");
+    navegar(pageLogin);
+});
+
+document.getElementById('form-login').addEventListener('submit', (e) => {
+    e.preventDefault();
+    pageLogin.classList.remove('active');
+    mainHeader.classList.remove('hidden');
+    mainContent.classList.remove('hidden');
+    navegar(pageHome);
+});
+
+document.getElementById('link-home').addEventListener('click', () => navegar(pageHome));
+document.getElementById('link-cadastro').addEventListener('click', () => navegar(pageCadastro));
+document.getElementById('link-cofre').addEventListener('click', () => {
+    navegar(pageCofre);
+    renderizarCofre();
+});
+document.getElementById('link-planos').addEventListener('click', () => navegar(pagePlanos));
+document.getElementById('btn-start').addEventListener('click', () => navegar(pageCadastro));
+
+document.getElementById('tipoAtivo').addEventListener('change', (e) => {
+    const valor = e.target.value;
+    const container = document.getElementById('container-senha');
+    const label = document.getElementById('label-senha');
+    
+    if (valor !== "") {
+        container.classList.remove('hidden');
+        if (valor === 'banco') label.textContent = 'Senha do banco';
+        else if (valor === 'redesocial') label.textContent = 'Senha da rede social';
+        else if (valor === 'crypto') label.textContent = 'Chave de acesso';
+        else if (valor === 'documentos') label.textContent = 'Senha do cofre';
+    } else {
+        container.classList.add('hidden');
+    }
+});
+
+document.getElementById('form-ativo').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const novoAtivo = {
+        titular: document.getElementById('titular').value,
+        tipo: document.getElementById('tipoAtivo').options[document.getElementById('tipoAtivo').selectedIndex].text,
+        identificacao: document.getElementById('identificacao').value,
+        herdeiro: document.getElementById('emailHerdeiro').value,
+        tempo: document.getElementById('tempoInatividade').value
+    };
+
+    cofreDeAtivos.push(novoAtivo);
+    document.getElementById('form-ativo').reset();
+    document.getElementById('container-senha').classList.add('hidden');
+    document.getElementById('modalSucesso').style.display = 'flex';
+});
+
+document.getElementById('btnFecharModal').addEventListener('click', () => {
+    document.getElementById('modalSucesso').style.display = 'none';
+    navegar(pageCofre);
+    renderizarCofre();
+});
+
+function renderizarCofre() {
+    const lista = document.getElementById('lista-ativos');
+    lista.innerHTML = cofreDeAtivos.length === 0 ? "<p>Seu cofre está vazio.</p>" : "";
+    
+    cofreDeAtivos.forEach(ativo => {
+        const card = document.createElement('div');
+        card.className = 'ativo-card';
+        card.innerHTML = `
+            <h3>${ativo.tipo}</h3>
+            <p><span class="info-label">Titular:</span> ${ativo.titular}</p>
+            <p><span class="info-label">ID/Link:</span> ${ativo.identificacao}</p>
+            <p><span class="info-label">Herdeiro:</span> ${ativo.herdeiro}</p>
+            <p><span class="info-label">Gatilho:</span> ${ativo.tempo}</p>
+            <p style="color:#38E09E; margin-top:10px; font-weight:bold;">✓ Criptografado</p>
+        `;
+        lista.appendChild(card);
+    });
+}
